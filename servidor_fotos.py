@@ -7,7 +7,7 @@ No distingue mayusculas/minusculas ni el espacio tras "_" en los nombres.
 Uso:
     python servidor_fotos.py "RUTA\\FOTOS" [puerto]      (puerto por defecto: 8081)
 Ejemplo:
-    python servidor_fotos.py "Z:\\06_GIS\\_SUMINISTROS_ELECTRICOS\\FOTOS"
+    python servidor_fotos.py "\\\\srvdatosCabildo\\servInstala\\06_GIS\\_SUMINISTROS_ELECTRICOS\\FOTOS"
 
 Luego, en config.js:  servidorFotos: "http://localhost:8081/"
 (si lo ejecutas en otro equipo de la red: "http://NOMBRE-O-IP:8081/")

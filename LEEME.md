@@ -21,7 +21,7 @@ El visor las pide a un servidor con el MISMO nombre de archivo que figura en el 
 (la ruta `Z:\\...` se ignora; solo cuenta el nombre, con su extensión).
 
 1. Arranca el servidor con la carpeta de fotos (necesita Python):
-       python servidor_fotos.py "Z:\06_GIS\_SUMINISTROS_ELECTRICOS\FOTOS" 8081
+       python servidor_fotos.py "\\srvdatosCabildo\servInstala\06_GIS\_SUMINISTROS_ELECTRICOS\FOTOS" 8081
    o doble clic en `Servidor fotos.bat` (edita la ruta dentro).
 2. En `config.js`: `servidorFotos: "http://localhost:8081/"`
    (si el servidor está en otro equipo de la red: `"http://NOMBRE-O-IP:8081/"`).
