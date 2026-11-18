@@ -23,11 +23,12 @@ const CONFIG = {
   campoTitulo: "ENTIDAD",        // título del popup
   campoSubtitulo: "MUNICIPIO",   // línea bajo el título en el panel lateral
 
-  // SERVIDOR DE FOTOS EN LOCAL: las fotos se piden a este servidor con el MISMO nombre de archivo
-  // que figura en el shapefile (ej. ES0031607010298005NQ0F_Fachada.jpg). La ruta Z:\\... se ignora.
-  // Arranca el servidor con "Servidor fotos.bat" (o cualquier servidor web que sirva la carpeta).
-  // Vacío = usar las carpetas "carpeta" de abajo (fotos/ ... optimizadas con optimizar_fotos.py).
-  servidorFotos: "http://localhost:8081/",
+  // ORIGEN DE LAS FOTOS: carpeta (o servidor) donde están, con el MISMO nombre de archivo que figura
+  // en el shapefile (la ruta Z:\\... se ignora; solo cuenta el nombre). No hay que copiar ni convertir nada.
+  // Carpeta de red (sin instalar nada; abrir el visor con "Abrir visor.bat" o index.html):
+  //     \\srvdatosCabildo\servInstala\06_GIS\_SUMINISTROS_ELECTRICOS\FOTOS   ->  file://srvdatosCabildo/servInstala/...
+  // Servidor web: "http://servidor:8081/".  Vacío = carpetas fotos/ junto al visor (como en el visor Abasto).
+  servidorFotos: "file://srvdatosCabildo/servInstala/06_GIS/_SUMINISTROS_ELECTRICOS/FOTOS/",
 
   // Fotos: en el shapefile solo importa el NOMBRE del archivo (la ruta Z:\... se ignora).
   // Se buscan en fotos/<NOMBRE>.jpg (y fotos/mini/<NOMBRE>.jpg) -> las genera optimizar_fotos.py
