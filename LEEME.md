@@ -7,7 +7,7 @@ Mismo visor que "Abasto" con los datos de `2027_Suministros_electricos_REGCAN95`
 - `Abrir visor.bat` (Windows): ventana propia con Edge/Chrome, sin instalar nada.
 Es portable: la carpeta se puede copiar a un USB o a una carpeta de red.
 Icono: rayo amarillo sobre azul (colores del Cabildo). `icono_electrico.svg` es el de los puntos y la pestaña; la ventana de `Abrir visor.bat` lo usa también.
-Para un acceso directo en el Escritorio: clic derecho en `Abrir visor.bat` > Crear acceso directo > Propiedades > Cambiar icono > `icono_electrico.ico`.
+Para un acceso directo en el Escritorio con el icono: doble clic en `Crear acceso directo.bat` (no instala nada; crea "Visor Suministros Electricos" en el Escritorio).
 
 ## Publicar en internet
 Arrastra la carpeta a https://app.netlify.com/drop
