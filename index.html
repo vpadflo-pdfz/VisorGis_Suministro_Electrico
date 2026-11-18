@@ -166,7 +166,13 @@ function listaFotos(p){
   for(const g of CONFIG.fotos){
     const raw=p[g.campo]; if(!raw) continue;
     String(raw).split(/[;|]/).map(s=>s.trim()).filter(Boolean).forEach(s=>{
-      s=s.replace(/\\/g,'/').split('/').pop().replace(/\.[^.]+$/,'');
+      s=s.replace(/\\/g,'/').split('/').pop();   // solo el NOMBRE del archivo (la ruta Z:\\... se ignora)
+      if(CONFIG.servidorFotos){   // servidor local: mismo nombre que en el shapefile, tal cual (con su extension)
+        const base=CONFIG.servidorFotos.replace(/\/?$/,'/');
+        out.push({etq:g.etiqueta, grande:base+encodeURIComponent(s), alt:base+encodeURIComponent(s.replace(/_\s+/g,'_'))});
+        return;
+      }
+      s=s.replace(/\.[^.]+$/,'');
       out.push({etq:g.etiqueta, grande:g.carpeta+encodeURIComponent(s)+'.jpg', mini:g.carpeta+'mini/'+encodeURIComponent(s)+'.jpg'});
     });
   }
@@ -311,7 +317,7 @@ function mostrarFotos(f){
       pfc.appendChild(fig);
       if(!x){ noDisp(fig); return; }
       const img=new Image(); img.alt=g.etiqueta;
-      img.onerror=()=>noDisp(fig);
+      img.onerror=()=>{ if(x.alt && x.alt!==img.getAttribute('src') && !img._r){ img._r=1; img.src=x.alt; } else noDisp(fig); };
       img.onclick=()=>{ const imgs=[...pfc.querySelectorAll('img')]; abrir(imgs.map(i=>i.src),imgs.indexOf(img)); };
       img.src=x.grande; fig.appendChild(img);
     });

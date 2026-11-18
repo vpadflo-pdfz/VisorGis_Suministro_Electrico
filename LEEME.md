@@ -15,12 +15,23 @@ Arrastra la carpeta a https://app.netlify.com/drop
    (los ficheros dentro del zip pueden llamarse como quieras).
 2. `python generar_puntos_js.py` (actualiza `data/puntos.js`, necesario para abrir con doble clic).
 
-## Fotos (opcional)
+## Fotos desde un servidor local
 El shapefile enlaza 5 fotos por punto (Vista aérea, Fachada, Armario fachada, Armario medida, Equipo medida).
-Las fotos NO están incluidas: mientras no existan, el panel muestra "No disponible".
-    pip install pillow
-    python optimizar_fotos.py "RUTA\FOTOS" fotos
-    python comprobar_fotos.py data/puntos.zip
+El visor las pide a un servidor con el MISMO nombre de archivo que figura en el shapefile
+(la ruta `Z:\\...` se ignora; solo cuenta el nombre, con su extensión).
+
+1. Arranca el servidor con la carpeta de fotos (necesita Python):
+       python servidor_fotos.py "Z:\06_GIS\_SUMINISTROS_ELECTRICOS\FOTOS" 8081
+   o doble clic en `Servidor fotos.bat` (edita la ruta dentro).
+2. En `config.js`: `servidorFotos: "http://localhost:8081/"`
+   (si el servidor está en otro equipo de la red: `"http://NOMBRE-O-IP:8081/"`).
+3. Abre el visor. Si una foto no existe, el panel muestra "No disponible".
+
+- El servidor no distingue mayúsculas/minúsculas ni el espacio tras `_` (`_ Armario_fachada` = `_Armario_fachada`).
+- Sirve cualquier servidor web (IIS, nginx...) que exponga la carpeta con cabecera CORS `Access-Control-Allow-Origin: *`.
+- Si publicas el visor en https (Netlify), el navegador bloquea fotos de un servidor http que no sea localhost.
+  Para uso en red local, abre el visor con `Abrir visor.bat` / `index.html`.
+- Sin servidor: deja `servidorFotos: ""` y usa carpetas (`fotos/`) generadas con `optimizar_fotos.py`.
 
 ## Configuración
 Todo en `config.js`: WMS, campos del popup, filtros, fotos, icono, logo, vista inicial.

@@ -23,6 +23,12 @@ const CONFIG = {
   campoTitulo: "ENTIDAD",        // título del popup
   campoSubtitulo: "MUNICIPIO",   // línea bajo el título en el panel lateral
 
+  // SERVIDOR DE FOTOS EN LOCAL: las fotos se piden a este servidor con el MISMO nombre de archivo
+  // que figura en el shapefile (ej. ES0031607010298005NQ0F_Fachada.jpg). La ruta Z:\\... se ignora.
+  // Arranca el servidor con "Servidor fotos.bat" (o cualquier servidor web que sirva la carpeta).
+  // Vacío = usar las carpetas "carpeta" de abajo (fotos/ ... optimizadas con optimizar_fotos.py).
+  servidorFotos: "http://localhost:8081/",
+
   // Fotos: en el shapefile solo importa el NOMBRE del archivo (la ruta Z:\... se ignora).
   // Se buscan en fotos/<NOMBRE>.jpg (y fotos/mini/<NOMBRE>.jpg) -> las genera optimizar_fotos.py
   fotos: [
