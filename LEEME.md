@@ -2,6 +2,9 @@
 
 Mismo visor que "Abasto" con los datos de `2027_Suministros_electricos_REGCAN95` (527 puntos).
 
+## Manual de uso
+`docs/Manual_de_uso_Visor_Suministros_Electricos.pdf` (para los usuarios). Fuente editable: `docs/manual/manual.html` (+ capturas en `docs/manual/img/`).
+
 ## Abrir
 - Doble clic en `index.html` (necesita internet para el mapa y la ortofoto GRAFCAN), o
 - `Abrir visor.bat` (Windows): ventana propia con Edge/Chrome, sin instalar nada.

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Manual de uso – Visor GIS de Suministros eléctricos</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", Arial, sans-serif; font-size: 11pt; line-height: 1.45; color: #1b1b1b; margin: 0; }
+  h1 { font-size: 24pt; color: #001f7c; margin: 0 0 4px; }
+  h2 { font-size: 15pt; color: #001f7c; border-bottom: 3px solid #f9e200; padding-bottom: 3px; margin: 22px 0 10px; break-after: avoid; }
+  h3 { font-size: 12pt; color: #001f7c; margin: 14px 0 4px; break-after: avoid; }
+  p { margin: 6px 0; }
+  ul, ol { margin: 6px 0 6px 20px; padding: 0; }
+  li { margin: 3px 0; }
+  .portada { height: 255mm; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: #001f7c; color: #fff; margin: -18mm -16mm 0; padding: 30mm 20mm; break-after: page; width: 210mm; }
+  .portada img.logo { width: 70mm; background: #fff; padding: 8px 14px; border-radius: 8px; margin-bottom: 18mm; }
+  .portada img.ico { width: 38mm; margin-bottom: 8mm; }
+  .portada h1 { color: #f9e200; font-size: 30pt; }
+  .portada .sub { font-size: 15pt; margin-top: 6px; }
+  .portada .ver { margin-top: 30mm; font-size: 10pt; opacity: .85; }
+  .indice li { margin: 4px 0; }
+  figure { margin: 10px 0 14px; break-inside: avoid; text-align: center; }
+  figure img { max-width: 100%; border: 1px solid #c9cfe0; border-radius: 4px; }
+  figcaption { font-size: 9.5pt; color: #555; margin-top: 4px; }
+  .num { display: inline-block; width: 1.5em; height: 1.5em; line-height: 1.5em; text-align: center; border-radius: 50%; background: #d6001c; color: #fff; font-weight: 700; font-size: 9.5pt; margin-right: 4px; }
+  .nota { border-left: 5px solid #f9e200; background: #fffbe0; padding: 8px 12px; margin: 10px 0; break-inside: avoid; }
+  .aviso { border-left: 5px solid #d6001c; background: #fdecee; padding: 8px 12px; margin: 10px 0; break-inside: avoid; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; break-inside: avoid; }
+  th, td { border: 1px solid #c9cfe0; padding: 5px 8px; text-align: left; vertical-align: top; font-size: 10.5pt; }
+  th { background: #001f7c; color: #fff; }
+  td:first-child { background: #f2f4fa; font-weight: 600; width: 32%; }
+  kbd { border: 1px solid #aaa; border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; font-size: 9.5pt; background: #f6f6f6; }
+  .salto { break-before: page; }
+</style>
+</head>
+<body>
+
+<div class="portada">
+  <img class="logo" src="../../logo.png" alt="Cabildo de Gran Canaria">
+  <img class="ico" src="../../icono_electrico.png" alt="">
+  <h1>Visor GIS de<br>Suministros eléctricos</h1>
+  <div class="sub">Manual de uso</div>
+  <div class="ver">Cabildo de Gran Canaria · Edición noviembre 2026</div>
+</div>
+
+<h2 style="margin-top:0">Contenido</h2>
+<ol class="indice">
+  <li>Qué es este visor</li>
+  <li>Puesta en marcha (solo la primera vez)</li>
+  <li>Conocer la pantalla</li>
+  <li>Buscar un suministro</li>
+  <li>Filtrar los suministros</li>
+  <li>Ver los datos y las fotos de un suministro</li>
+  <li>Street View</li>
+  <li>Sacar el informe de un suministro</li>
+  <li>Cambiar las capas del mapa</li>
+  <li>Preguntas y problemas frecuentes</li>
+</ol>
+
+<h2>1. Qué es este visor</h2>
+<p>Es un mapa que muestra los <b>527 suministros eléctricos</b> de las instalaciones del Cabildo de Gran Canaria. Cada suministro se representa con un icono azul con un rayo amarillo.</p>
+<p>Para cada suministro puedes consultar: entidad, municipio, dirección, CUPS, número y tipo de contador, tarifa, potencia contratada y lote, además de <b>cinco fotografías</b> (vista aérea, fachada, armario en fachada, armario de medida y equipo de medida). También puedes <b>sacar un informe</b> en papel o PDF.</p>
+<div class="nota"><b>No hace falta instalar nada.</b> El visor se abre con el navegador (Edge o Chrome) que ya trae el ordenador. Solo consulta información: <b>no se puede modificar ningún dato desde el visor.</b></div>
+
+<h2>2. Puesta en marcha (solo la primera vez)</h2>
+<h3>2.1 Crear el acceso directo en el Escritorio</h3>
+<ol>
+  <li>Abre la carpeta del visor (la que te haya indicado el administrador).</li>
+  <li>Haz doble clic en <b>Crear acceso directo.bat</b>.</li>
+  <li>Aparece un mensaje de confirmación y, en el Escritorio, el icono <b>«Visor Suministros Electricos»</b> (rayo amarillo sobre fondo azul).</li>
+</ol>
+<h3>2.2 Abrir el visor</h3>
+<p>Haz doble clic en el icono del Escritorio. El visor se abre en una ventana propia, sin barra de direcciones.</p>
+<div class="nota">Si prefieres no crear el acceso directo, puedes abrirlo directamente con doble clic en <b>Abrir visor.bat</b> dentro de la carpeta del visor.</div>
+<div class="aviso"><b>Importante:</b> para ver el mapa de fondo hace falta conexión a internet, y para ver las fotos hace falta tener acceso a la carpeta de red del Cabildo (<i>srvdatosCabildo</i>). Fuera de la red del Cabildo, las fotos no se verán.</div>
+
+<h2>3. Conocer la pantalla</h2>
+<figure>
+  <img src="img/01_general.png" alt="Pantalla general">
+  <figcaption>Pantalla general del visor (mapa de fondo sustituido por un color neutro en esta captura).</figcaption>
+</figure>
+<table>
+  <tr><th colspan="2">Elementos de la pantalla</th></tr>
+  <tr><td><span class="num">1</span>Buscador</td><td>Escribe aquí cualquier dato (dirección, CUPS, municipio, entidad…) para localizar un suministro.</td></tr>
+  <tr><td><span class="num">2</span>Capas</td><td>Activa o desactiva la ortofoto, los viales (calles y carreteras) y los propios suministros.</td></tr>
+  <tr><td><span class="num">3</span>Filtros</td><td>Muestra solo los suministros de una entidad, municipio, tarifa o tipo de contador.</td></tr>
+  <tr><td><span class="num">4</span>Zoom</td><td>Botones <b>+</b> y <b>−</b> para acercar o alejar. También funciona la rueda del ratón.</td></tr>
+  <tr><td><span class="num">5</span>Street View</td><td>El «muñeco» naranja abre Google Street View en el lugar que elijas.</td></tr>
+  <tr><td><span class="num">6</span>Logo</td><td>Logotipo del Cabildo de Gran Canaria.</td></tr>
+</table>
+<p><b>Moverse por el mapa:</b> mantén pulsado el botón izquierdo del ratón sobre el mapa y arrastra. Cuando hay muchos puntos juntos se solapan; acerca el zoom para separarlos.</p>
+
+<h2>4. Buscar un suministro</h2>
+<ol>
+  <li>Haz clic en el buscador (<span class="num">1</span>) y escribe lo que sepas: parte de la dirección, el nombre de la entidad, el municipio, el CUPS o el número de contador.</li>
+  <li>Aparece una lista con las coincidencias (<span class="num">2</span>). Puedes escribir varias palabras: se buscan todas a la vez.</li>
+  <li>Haz clic en un resultado (o pulsa <kbd>Intro</kbd> para ir al primero): el mapa se acerca al suministro y se abren sus datos.</li>
+  <li>Para borrar la búsqueda, pulsa la <b>×</b> al final del cuadro.</li>
+</ol>
+<figure>
+  <img src="img/02_buscador.png" alt="Buscador" style="max-width:85%">
+  <figcaption>El buscador no distingue mayúsculas, minúsculas ni tildes.</figcaption>
+</figure>
+<div class="nota"><b>Ejemplo:</b> escribe <kbd>viera</kbd> para encontrar los suministros de la calle Viera y Clavijo.</div>
+
+<h2>5. Filtrar los suministros</h2>
+<p>El cuadro <b>Filtros</b> (derecha de la pantalla) tiene cuatro menús desplegables: <b>Entidad</b>, <b>Municipio</b>, <b>Tarifa</b> y <b>Tipo de contador</b>.</p>
+<ol>
+  <li>Despliega un menú (<span class="num">1</span>) y elige un valor. Entre paréntesis aparece cuántos suministros hay con ese valor.</li>
+  <li>El mapa muestra solo los suministros que cumplen el filtro y el contador (<span class="num">2</span>) indica cuántos hay.</li>
+  <li>Puedes combinar varios filtros a la vez (por ejemplo, municipio <i>Telde</i> y tarifa <i>3.0A</i>).</li>
+  <li>Pulsa <b>Limpiar</b> (<span class="num">3</span>) para quitar todos los filtros y volver a ver los 527 suministros.</li>
+</ol>
+<figure>
+  <img src="img/03_filtros.png" alt="Filtros" style="max-width:55%">
+  <figcaption>Filtro por municipio aplicado: se muestran 11 de 527 suministros.</figcaption>
+</figure>
+<p>El buscador y los filtros funcionan juntos: la búsqueda solo encuentra suministros que pasan los filtros activos.</p>
+
+<h2>6. Ver los datos y las fotos de un suministro</h2>
+<p>Haz clic sobre el icono de un suministro. Ocurren dos cosas:</p>
+<ul>
+  <li>Aparece un <b>cuadro con los datos</b> junto al punto (<span class="num">5</span>).</li>
+  <li>Se abre un <b>panel a la izquierda</b> con el nombre de la entidad (<span class="num">1</span>), los botones de informe y Street View (<span class="num">2</span> y <span class="num">3</span>) y las <b>fotografías</b> (<span class="num">4</span>).</li>
+</ul>
+<figure>
+  <img src="img/04_punto.png" alt="Datos y fotos de un suministro">
+  <figcaption>Datos del suministro y panel de fotografías (las fotos de esta captura son de ejemplo).</figcaption>
+</figure>
+<h3>Fotografías</h3>
+<table>
+  <tr><th>Foto</th><th>Qué muestra</th></tr>
+  <tr><td>Vista aérea</td><td>El edificio o el entorno visto desde arriba.</td></tr>
+  <tr><td>Fachada</td><td>Fachada del inmueble donde está el suministro.</td></tr>
+  <tr><td>Armario en fachada</td><td>Ubicación del armario de contadores en la fachada.</td></tr>
+  <tr><td>Armario de medida</td><td>El armario de medida de cerca.</td></tr>
+  <tr><td>Equipo de medida</td><td>El contador o equipo de medida.</td></tr>
+</table>
+<ul>
+  <li><b>Ampliar una foto:</b> haz clic sobre ella. Se abre a pantalla completa; con las flechas <kbd>←</kbd> <kbd>→</kbd> del teclado (o los botones ‹ ›) pasas a la siguiente y con <kbd>Esc</kbd> la cierras.</li>
+  <li>Si una foto no existe aparece el recuadro gris <b>«No disponible»</b>.</li>
+  <li><b>Cerrar el panel:</b> pulsa la <b>×</b> de la esquina superior del panel.</li>
+</ul>
+
+<h2>7. Street View</h2>
+<p>Sirve para ver cómo es el lugar «a pie de calle» en Google Street View. Hay dos formas:</p>
+<ol>
+  <li><b>Desde un suministro:</b> selecciona un punto y pulsa <b>«Ver este punto en Street View»</b> (<span class="num">3</span> en la captura del apartado 6).</li>
+  <li><b>Desde cualquier lugar del mapa:</b> pulsa el muñeco naranja (<span class="num">5</span> en la pantalla general) y, a continuación, haz clic en el mapa en el sitio que quieras ver. Con <kbd>Esc</kbd> se cancela.</li>
+</ol>
+<p>Street View se abre en una pestaña nueva del navegador. Si no hay imágenes de Google en esa zona, Google lo indicará.</p>
+
+<h2>8. Sacar el informe de un suministro</h2>
+<p>El informe reúne en una hoja los <b>datos del suministro</b> y sus <b>fotografías</b>, con el logotipo del Cabildo, para imprimirlo o guardarlo como PDF.</p>
+<ol>
+  <li>Haz clic en el suministro que quieras.</li>
+  <li>En el panel de la izquierda pulsa <b>«Informe del suministro (datos + fotos)»</b>.</li>
+  <li>Se abre la hoja del informe a pantalla completa. Revísala.</li>
+  <li>Pulsa <b>«Imprimir / Guardar PDF»</b> (<span class="num">1</span>).</li>
+  <li>En la ventana de impresión elige:
+    <ul>
+      <li><b>Una impresora</b>, para sacarlo en papel, o</li>
+      <li><b>«Guardar como PDF»</b> (destino), para obtener un archivo. Pulsa <i>Guardar</i> y elige la carpeta y el nombre.</li>
+    </ul>
+  </li>
+  <li>Para volver al mapa pulsa <b>«Cerrar»</b> (<span class="num">2</span>) o la tecla <kbd>Esc</kbd>.</li>
+</ol>
+<figure>
+  <img src="img/05_informe.png" alt="Informe">
+  <figcaption>Pantalla del informe. Al imprimir solo sale la hoja, sin los botones azules.</figcaption>
+</figure>
+<div class="nota">El informe incluye: nº, entidad, municipio, dirección, CUPS, nº y tipo de contador, tarifa, potencia contratada, lote, coordenadas, fecha de generación y las fotografías disponibles. Ocupa normalmente <b>2 páginas A4</b>.</div>
+
+<h2>9. Cambiar las capas del mapa</h2>
+<p>En el cuadro <b>Capas</b> (<span class="num">2</span> de la pantalla general) marca o desmarca:</p>
+<table>
+  <tr><th>Capa</th><th>Para qué sirve</th></tr>
+  <tr><td>Ortofoto urbana GRAFCAN</td><td>Fotografía aérea oficial de Canarias. Permite ver los edificios reales. Es la capa que sale activada al abrir el visor.</td></tr>
+  <tr><td>Viales</td><td>Muestra los nombres de calles y carreteras sobre la ortofoto. Actívala cuando quieras orientarte.</td></tr>
+  <tr><td>Suministros eléctricos</td><td>Los iconos de los suministros. Desmárcala si quieres ver el mapa limpio.</td></tr>
+</table>
+
+<h2>10. Preguntas y problemas frecuentes</h2>
+<table>
+  <tr><th>Problema</th><th>Qué hacer</th></tr>
+  <tr><td>No aparece ningún punto</td><td>Pulsa <b>Limpiar</b> en el cuadro de filtros por si hay un filtro activo. Comprueba que la capa «Suministros eléctricos» está marcada. Si sigue igual, cierra el visor y vuelve a abrirlo.</td></tr>
+  <tr><td>El mapa de fondo está en gris</td><td>Falta conexión a internet. Comprueba la conexión a internet y recarga con <kbd>F5</kbd>.</td></tr>
+  <tr><td>Las fotos salen como «No disponible»</td><td>Comprueba que tienes acceso a la carpeta de red <i>\\srvdatosCabildo\servInstala\06_GIS\_SUMINISTROS_ELECTRICOS\FOTOS</i> (ábrela desde el Explorador de archivos). Si la carpeta abre pero una foto concreta no sale, es posible que esa foto no exista: comunícalo al administrador indicando el CUPS del suministro.</td></tr>
+  <tr><td>El acceso directo no tiene el icono del rayo</td><td>Vuelve a ejecutar <b>Crear acceso directo.bat</b>.</td></tr>
+  <tr><td>Windows muestra un aviso al abrir el <i>.bat</i></td><td>Elige «Más información» y «Ejecutar de todas formas», o consulta con Informática: los archivos <i>.bat</i> del visor son de texto y no instalan nada.</td></tr>
+  <tr><td>Un dato parece incorrecto o falta un suministro</td><td>Los datos proceden del archivo SIG <i>2027_Suministros_electricos_REGCAN95</i>. Comunica el CUPS y el dato a corregir al responsable del archivo.</td></tr>
+  <tr><td>¿Puedo modificar datos desde el visor?</td><td>No. El visor es solo de consulta.</td></tr>
+  <tr><td>¿Puedo usarlo desde el móvil o una web pública?</td><td>No está pensado para ello: las fotos están en la red interna del Cabildo y solo se ven desde equipos con acceso a ella.</td></tr>
+</table>
+
+<h2>Atajos de teclado</h2>
+<table>
+  <tr><th>Tecla</th><th>Acción</th></tr>
+  <tr><td><kbd>Esc</kbd></td><td>Cierra la foto ampliada, el informe o cancela Street View.</td></tr>
+  <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>Foto anterior / siguiente cuando una foto está ampliada.</td></tr>
+  <tr><td><kbd>F5</kbd></td><td>Recarga el visor.</td></tr>
+  <tr><td><kbd>Ctrl</kbd> + <kbd>P</kbd></td><td>Imprime (estando en el informe).</td></tr>
+</table>
+
+<p style="margin-top:22px;color:#666;font-size:9.5pt">Visor GIS de Suministros eléctricos · Cabildo de Gran Canaria · Manual de uso, noviembre 2026.</p>
+</body>
+</html>
