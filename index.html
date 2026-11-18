@@ -63,6 +63,33 @@
   body.svmodo #svayuda{display:block}
   .btnsv{display:flex;align-items:center;gap:8px;width:100%;box-sizing:border-box;margin:0 0 12px;padding:8px 12px;border:1px solid #ccc;border-radius:6px;background:#f7f7f7;cursor:pointer;font-size:13px}
   .btnsv:hover{background:#eee}
+  /* ---- Informe ---- */
+  #informe{display:none;position:fixed;inset:0;z-index:6000;background:#e9ecf1;overflow:auto}
+  body.coninforme #informe{display:block}
+  #informe .barra{position:sticky;top:0;z-index:2;display:flex;gap:8px;justify-content:flex-end;padding:8px 14px;background:#001f7c}
+  #informe .barra button{border:0;border-radius:5px;padding:7px 16px;font-size:14px;cursor:pointer;background:#f9e200;color:#001f7c;font-weight:600}
+  #informe .hoja{background:#fff;max-width:820px;margin:16px auto;padding:28px 34px;box-shadow:0 1px 8px rgba(0,0,0,.3);font-size:13px;color:#111}
+  #informe .cab{display:flex;align-items:center;gap:16px;border-bottom:3px solid #001f7c;padding-bottom:10px;margin-bottom:14px}
+  #informe .cab img{height:64px}
+  #informe h1{margin:0;font-size:20px;color:#001f7c}
+  #informe .cab small{color:#555}
+  #informe h2{font-size:15px;color:#001f7c;margin:16px 0 6px;border-bottom:1px solid #ccd}
+  #informe table{border-collapse:collapse;width:100%}
+  #informe td{border:1px solid #ccd;padding:4px 8px;vertical-align:top}
+  #informe td:first-child{width:32%;background:#f2f4fa;font-weight:600;color:#001f7c}
+  #informe .fotosinf{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  #informe figure{margin:0;break-inside:avoid}
+  #informe figcaption{font-weight:600;color:#001f7c;margin-bottom:3px}
+  #informe figure img{width:100%;max-height:300px;object-fit:contain;border:1px solid #ccd;background:#f7f7f7;display:block}
+  #informe .pie{margin-top:14px;color:#777;font-size:11px;text-align:right}
+  @media print{
+    body.coninforme > *:not(#informe){display:none!important}
+    body.coninforme{overflow:visible;height:auto}
+    #informe{position:static;background:#fff;overflow:visible}
+    #informe .barra{display:none}
+    #informe .hoja{box-shadow:none;margin:0;max-width:none;padding:0}
+    @page{margin:14mm}
+  }
   .nodisp{position:relative;width:100%;aspect-ratio:4/3;border-radius:6px;background:repeating-linear-gradient(45deg,#f1f1f1 0 14px,#e6e6e6 14px 28px);border:1px dashed #bbb;box-sizing:border-box;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .nodisp span{transform:rotate(-30deg);font-size:26px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9a9a9a;white-space:nowrap}
   .leaflet-marker-icon{filter:drop-shadow(0 1px 2px rgba(0,0,0,.55))}
@@ -90,6 +117,7 @@
 <aside id="panelfotos"><header><span id="pft"></span><small id="pfs"></small><button id="pfx" title="Cerrar">×</button></header><div id="pfcuerpo"></div></aside>
 <div id="svayuda">Haz clic en el mapa para abrir Street View · Esc para cancelar</div>
 <div id="err"></div>
+<div id="informe"><div class="barra"><button id="infimp">Imprimir / Guardar PDF</button><button id="infcer">Cerrar</button></div><div class="hoja" id="infhoja"></div></div>
 <div id="lb"><button id="lbx">×</button><button id="lbp">‹</button><img id="lbi" alt=""><button id="lbn">›</button></div>
 
 <script src="lib/leaflet.js"></script>
@@ -300,6 +328,39 @@ new Pegman().addTo(map);
 map.on('click',e=>{ if(!document.body.classList.contains('svmodo')) return; svModo(false); map.closePopup(); svAbrir(e.latlng.lat,e.latlng.lng); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') svModo(false); });
 
+
+// ---- Informe del punto seleccionado (datos + fotos) ----
+function informe(f){
+  const p=f.properties||{}, fotos=listaFotos(p), hoja=document.getElementById('infhoja');
+  const etq=CONFIG.etiquetas||{};
+  const campoFoto=new Set(CONFIG.fotos.map(g=>g.campo));
+  const ocultos=new Set((CONFIG.ocultarInforme||CONFIG.ocultar||[]));
+  const filas=Object.entries(p).filter(([k,v])=>!campoFoto.has(k)&&!ocultos.has(k)&&v!==null&&String(v).trim()!==''&&String(v).trim()!=='-')
+    .map(([k,v])=>`<tr><td>${esc(etq[k]||k)}</td><td>${esc(String(v).trim())}</td></tr>`).join('');
+  let coord='';
+  if(f.geometry&&f.geometry.type==='Point'){ const [lng,lat]=f.geometry.coordinates; coord=`<tr><td>${esc(etq.COORD||'Coordenadas (WGS84)')}</td><td>${lat.toFixed(6)}, ${lng.toFixed(6)}</td></tr>`; }
+  const hoy=new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
+  hoja.innerHTML=
+    `<div class="cab">${CONFIG.logo?`<img src="${esc(CONFIG.logo)}" alt="">`:''}<div><h1>Informe de suministro eléctrico</h1><small>${esc(p[CONFIG.campoTitulo]||'')}${p[CONFIG.campoSubtitulo]?' · '+esc(p[CONFIG.campoSubtitulo]):''}</small></div></div>`+
+    `<h2>Datos del suministro</h2><table>${filas}${coord}</table>`+
+    `<h2>Fotografías</h2><div class="fotosinf" id="infotos"></div>`+
+    `<div class="pie">Generado el ${esc(hoy)}</div>`;
+  const cont=document.getElementById('infotos');
+  CONFIG.fotos.forEach(g=>{
+    fotos.filter(x=>x.etq===g.etiqueta).forEach(x=>{
+      const fig=document.createElement('figure'); fig.innerHTML=`<figcaption>${esc(g.etiqueta)}</figcaption>`;
+      const img=new Image(); img.alt=g.etiqueta;
+      img.onerror=()=>{ if(x.alt&&!img._r&&x.alt!==img.getAttribute('src')){ img._r=1; img.src=x.alt; } else { img.remove(); fig.insertAdjacentHTML('beforeend','<div style="color:#999;padding:30px 0;text-align:center;border:1px dashed #bbb">No disponible</div>'); } };
+      img.src=x.grande; fig.appendChild(img); cont.appendChild(fig);
+    });
+  });
+  document.body.classList.add('coninforme'); document.getElementById('informe').scrollTop=0;
+}
+function cerrarInforme(){ document.body.classList.remove('coninforme'); }
+document.getElementById('infcer').onclick=cerrarInforme;
+document.getElementById('infimp').onclick=()=>window.print();
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.body.classList.contains('coninforme')) cerrarInforme(); });
+
 // ---- Panel lateral de fotos ----
 const panel=document.getElementById('panelfotos'), pfc=document.getElementById('pfcuerpo');
 function mostrarFotos(f){
@@ -307,6 +368,7 @@ function mostrarFotos(f){
   document.getElementById('pft').textContent=p[CONFIG.campoTitulo]||'Fotos';
   document.getElementById('pfs').textContent=[p[CONFIG.campoSubtitulo]].filter(Boolean).join(', ');
   pfc.innerHTML='';
+  { const bi=document.createElement('button'); bi.className='btnsv'; bi.innerHTML='<span style="font-size:18px">📄</span><span>Informe del suministro (datos + fotos)</span>'; bi.onclick=()=>informe(f); pfc.appendChild(bi); }
   if(f.geometry&&f.geometry.type==='Point'){ const [lng,lat]=f.geometry.coordinates; const b=document.createElement('button'); b.className='btnsv'; b.innerHTML=PEGMAN+'<span>Ver este punto en Street View</span>'; b.onclick=()=>svAbrir(lat,lng); pfc.appendChild(b); }
   // Un recuadro por cada tipo de foto (Contador, Armario...). Si no hay foto o no se encuentra: "No disponible".
   const noDisp=fig=>{ const im=fig.querySelector('img'); if(im) im.remove(); if(!fig.querySelector('.nodisp')) fig.insertAdjacentHTML('beforeend','<div class="nodisp"><span>No disponible</span></div>'); };

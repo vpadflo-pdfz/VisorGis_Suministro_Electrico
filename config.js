@@ -43,6 +43,15 @@ const CONFIG = {
   // Campos que NO se muestran en el popup
   ocultar: ["X", "Y", "LONGITUD", "LATITUD", "COORD_UTM", "NUM_FOTOS", "GOOGLE_MAP"],
 
+  // Nombres legibles de los campos en el informe (los que no estén aquí salen con su nombre del shapefile)
+  etiquetas: {
+    NUM: "Nº", ENTIDAD: "Entidad", MUNICIPIO: "Municipio", DIRECCION: "Dirección", CUPS: "CUPS",
+    NUM_CONT: "Nº de contador", TIPO_CONT: "Tipo de contador", TARIFA: "Tarifa", POT_CONTR: "Potencia contratada",
+    ULT_REV: "Última revisión", LOTE: "Lote", OBSERVAC: "Observaciones"
+  },
+  // Campos que NO salen en el informe (por defecto, los mismos de "ocultar")
+  ocultarInforme: ["X", "Y", "LONGITUD", "LATITUD", "COORD_UTM", "NUM_FOTOS", "GOOGLE_MAP"],
+
   // Campos por los que se puede filtrar (menús desplegables)
   filtros: ["ENTIDAD", "MUNICIPIO", "TARIFA", "TIPO_CONT"],
 

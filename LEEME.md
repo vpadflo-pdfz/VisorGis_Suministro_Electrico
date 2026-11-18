@@ -17,6 +17,11 @@ Arrastra la carpeta a https://app.netlify.com/drop
    (los ficheros dentro del zip pueden llamarse como quieras).
 2. `python generar_puntos_js.py` (actualiza `data/puntos.js`, necesario para abrir con doble clic).
 
+## Informe del suministro
+Selecciona un punto y pulsa **Informe del suministro (datos + fotos)** en el panel lateral: se abre una hoja con los datos
+y las 5 fotos. Botón **Imprimir / Guardar PDF** (elige "Guardar como PDF" en la impresora). Esc o **Cerrar** para volver al mapa.
+Los nombres de los campos y los campos que no salen se cambian en `config.js` (`etiquetas`, `ocultarInforme`).
+
 ## Fotos (sin instalar nada)
 El shapefile enlaza 5 fotos por punto (Vista aérea, Fachada, Armario fachada, Armario medida, Equipo medida).
 El visor las lee directamente de la carpeta de red, con el MISMO nombre de archivo que figura en el shapefile
